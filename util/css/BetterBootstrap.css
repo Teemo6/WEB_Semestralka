@@ -1,0 +1,28 @@
+.slightly-different-background{
+    background: #f7fff9;
+}
+
+.smaller-label {
+    font-size: 15px;
+}
+
+.no-underline-link{
+    text-decoration: none;
+}
+
+.no-underline-link:hover{
+    text-decoration: underline;
+}
+
+.form-control:focus {
+    border-color: #198654;
+    box-shadow: 0 0 0 0.1rem rgb(25, 134, 84, 0.25);
+}
+
+.w-110px{
+    width:110px;
+}
+
+.w-500px{
+    max-width:500px;
+}
