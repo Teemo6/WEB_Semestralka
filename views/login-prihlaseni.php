@@ -1,3 +1,11 @@
+<?php
+
+// Testing
+global $dataFetch;
+echo $dataFetch;
+
+?>
+
 <div class="container text-center p-4 w-500px">
     <div class="border border-secondary border-top rounded-top shadow slightly-different-background p-4">
         <h3 class="">Přihlášení</h3>

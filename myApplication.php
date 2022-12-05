@@ -1,12 +1,12 @@
 <?php
 
 class myApplication {
-    private $temp;
+    private $view;
 
     public function __construct(){
-        require_once(DIR_CONTROLLERS."TemplateController.php");
+        require_once(DIR_VIEWS."View.php");
 
-        $this->temp = new TemplateController();
+        $this->view = new View();
     }
 
     public function startApplication(){
@@ -17,7 +17,13 @@ class myApplication {
         }
         $pageInfo = WEB_PAGES[$pageKey];
 
-        $this->temp->getView($pageInfo["file_name"]);
+        // tady
+        require_once(DIR_CONTROLLERS.$pageInfo["controller"].".php");
+
+        $pageController = new $pageInfo["controller"];
+        $data = $pageController->fetchData();
+
+        $this->view->getView($pageInfo["view"], $data);
     }
 }
 

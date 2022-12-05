@@ -5,4 +5,5 @@
 
     $app = new myApplication();
     $app->startApplication();
+
 ?>
