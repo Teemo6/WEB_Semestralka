@@ -17,7 +17,7 @@ const DIR_VIEWS = "views/";
 const DIR_CONTROLLERS = "controllers/";
 
 // Defaultni stranka
-const DEFAULT_WEB_PAGE = "prihlaseni";
+const DEFAULT_WEB_PAGE = "clanky";
 
 // Vsechny stranky webu
 const WEB_PAGES = array(
@@ -32,6 +32,14 @@ const WEB_PAGES = array(
     "prihlaseni" => array(
         "view" => "login-prihlaseni",
         "controller" => "LoginController",
+    ),
+    "odhlaseni" => array(
+        "view" => "clanky-hlavni",
+        "controller" => "LoginController",
+    ),
+    "profil" => array(
+        "view" => "profil",
+        "controller" => "ProfilController",
     ),
 );
 

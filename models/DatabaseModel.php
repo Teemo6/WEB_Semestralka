@@ -1,7 +1,7 @@
 <?php
 
 class DatabaseModel{
-    private PDO $pdo;
+    protected PDO $pdo;
 
     public function __construct(){
         try {
@@ -13,9 +13,15 @@ class DatabaseModel{
         }
     }
 
-    public function getAllUsers():array {
-        $q = "SELECT * FROM ".TAB_UZIVATEL;
-        return $this->pdo->query($q)->fetchAll();
+    public function executeQuery($query){
+        $res = $this->pdo->query($query);
+
+        if ($res) {
+            return $res;
+        }
+        $err = $this->pdo->errorInfo();
+        echo "Error: ".$err[2];
+        return null;
     }
 }
 

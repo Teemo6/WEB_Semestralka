@@ -26,13 +26,24 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="index.php?page=clanky" class="nav-link link-success no-underline-link"><h5>Články</h5></a></li>
-            <li><a href="#" class="nav-link link-success no-underline-link"><h5>Profil</h5></a></li>
+            <li><a href="index.php?page=profil" class="nav-link link-success no-underline-link"><h5>Profil</h5></a></li>
             <li><a href="#" class="nav-link link-success no-underline-link"><h5>O projektu</h5></a></li>
         </ul>
 
         <div class="col-md-3 text-end">
-            <button onclick="location.href='index.php?page=prihlaseni'" type="button" class="btn btn-outline-success m-1 w-110px">Přihlásit</button>
-            <button onclick="location.href='index.php?page=registrace'" type="button" class="btn btn-success m-1 w-110px">Registrovat</button>
+
+            <?php
+            if(mySession::isSet('id')){ ?>
+                    <form action="index.php?page=odhlaseni" method="post" class="text-center">
+                        <b><?= $_SESSION["jmeno"] ?></b>
+                        <button type="submit" name="oSubmit" class="btn btn-outline-danger m-1 w-110px">Odhlásit</button>
+                    </form>
+            <?php
+            } else { ?>
+                <button onclick="location.href='index.php?page=prihlaseni'" type="button" class="btn btn-outline-success m-1 w-110px">Přihlásit</button>
+                <button onclick="location.href='index.php?page=registrace'" type="button" class="btn btn-success m-1 w-110px">Registrovat</button>
+            <?php } ?>
+
         </div>
     </header>
 </div>

@@ -1,11 +1,13 @@
 <?php
 
-class EmptyController {
-    public function __construct(){
-        require_once(DIR_MODELS."LoginModel.php");
-        $this->db = new LoginModel();
+require_once("mySession.php");
 
-        require(DIR_VIEWS."View.php");
+class ProfilController {
+    public function __construct(){
+        require_once(DIR_MODELS."ProfilModel.php");
+        $this->model = new ProfilModel();
+
+        require_once(DIR_VIEWS."View.php");
         $this->view = new View();
     }
 
@@ -14,6 +16,7 @@ class EmptyController {
         $this->view->getView($pageView);
         return ob_get_clean();
     }
+
 }
 
 ?>
