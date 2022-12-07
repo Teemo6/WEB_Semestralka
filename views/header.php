@@ -34,10 +34,20 @@
 
             <?php
             if(mySession::isSet('id')){ ?>
-                    <form action="index.php?page=odhlaseni" method="post" class="text-center">
-                        <b><?= $_SESSION["jmeno"] ?></b>
-                        <button type="submit" name="oSubmit" class="btn btn-outline-danger m-1 w-110px">Odhlásit</button>
-                    </form>
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle w-110px" data-bs-toggle="dropdown" aria-expanded="false">Možnosti</button>
+                    <ul class="dropdown-menu">
+                        <li class="container">
+                            <p class="dropdown-header"><?= $_SESSION['jmeno'] ?></p>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li class="container">
+                            <form action="index.php?page=odhlaseni" method="post" class="d-flex text-center">
+                                <button type="submit" name="oSubmit" class="btn btn-danger m-1 w-110px btn-block flex-fill">Odhlásit</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             <?php
             } else { ?>
                 <button onclick="location.href='index.php?page=prihlaseni'" type="button" class="btn btn-outline-success m-1 w-110px">Přihlásit</button>
