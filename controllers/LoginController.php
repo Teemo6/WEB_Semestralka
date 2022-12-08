@@ -1,7 +1,5 @@
 <?php
 
-require_once("mySession.php");
-
 class LoginController {
     public function __construct(){
         require_once(DIR_MODELS."LoginModel.php");
@@ -22,6 +20,7 @@ class LoginController {
             if(isset($_POST["oSubmit"])){
                $this->logout();
             } else {
+                // Přihlášený uživatel se nemůže znovu registrovat
                 $pageView = "clanky-hlavni";
             }
         }

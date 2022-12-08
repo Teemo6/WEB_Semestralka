@@ -20,14 +20,14 @@ global $queryResult;
                 <div class="alert alert-danger text-center" role="alert">
                     <div class="container">
                         <b>Registrace nebyla úspěšná.</b>
-                        <p>Tento uživatel již existuje.</p>
+                        <p>Toto uživatelské jméno již někdo používá.</p>
                     </div>
                 <?php
             } else if ($queryResult == 2) { ?>
                 <div class="alert alert-danger text-center" role="alert">
                     <div class="container">
                         <b>Registrace nebyla úspěšná.</b>
-                        <p>Tento e-mail je již použit.</p>
+                        <p>Tento e-mail již někdo používá.</p>
                     </div>
                 <?php
             } else if ($queryResult == 3) { ?>

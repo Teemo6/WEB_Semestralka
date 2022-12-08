@@ -1,7 +1,6 @@
 <?php
 
 require_once(DIR_MODELS."DatabaseModel.php");
-require_once("mySession.php");
 
 class LoginModel extends DatabaseModel{
     public function registrace(){
@@ -11,18 +10,21 @@ class LoginModel extends DatabaseModel{
         $rHeslo = htmlspecialchars($_POST["rHeslo"]);
         $rHeslo2 = htmlspecialchars($_POST["rHeslo2"]);
 
-        // Login je zabraný
-        $obj = $this->executeQuery("SELECT id_uzivatel FROM ".TAB_UZIVATEL." WHERE jmeno = '$rJmeno'");
-        $res = $obj->fetchAll();
-        if(count($res) > 0){
-            return 1;
-        }
-
-        // Email je zabraný
-        $obj = $this->executeQuery("SELECT id_uzivatel FROM ".TAB_UZIVATEL." WHERE email = '$rEmail'");
-        $res = $obj->fetchAll();
-        if(count($res) > 0){
-            return 2;
+        // Login nebo email je zabraný
+        $sql = "SELECT jmeno, email FROM uzivatel WHERE jmeno = :jmeno OR email = :email";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(
+            "jmeno" => $rJmeno,
+            "email" => $rEmail,
+        ));
+        $res = $query->fetch();
+        if($res != null){
+            if($res['jmeno'] == $rJmeno){
+                return 1;
+            }
+            if($res['email'] == $rEmail){
+                return 2;
+            }
         }
 
         // Hesla se neshodují
@@ -30,8 +32,17 @@ class LoginModel extends DatabaseModel{
             return 3;
         }
 
+        // Zahashuj heslo
+        $rHeslo = password_hash($rHeslo, PASSWORD_BCRYPT);
+
         // Registruj uživatele
-        $this->executeQuery("INSERT INTO ".TAB_UZIVATEL."(`jmeno`, `login`, `heslo`, `email`) VALUES ( '$rJmeno', '$rJmeno', '$rHeslo', '$rEmail')");
+        $sql = "INSERT INTO uzivatel(`jmeno`, `heslo`, `email`) VALUES ( :jmeno, :heslo, :email)";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(
+            "jmeno" => $rJmeno,
+            "heslo" => $rHeslo,
+            "email" => $rEmail,
+        ));
         return 0;
     }
 
@@ -40,18 +51,31 @@ class LoginModel extends DatabaseModel{
         $lJmeno = htmlspecialchars($_POST["lJmeno"]);
         $lHeslo = htmlspecialchars($_POST["lHeslo"]);
 
-        $obj = $this->executeQuery("SELECT * FROM ".TAB_UZIVATEL." WHERE jmeno = '$lJmeno' AND heslo = '$lHeslo'");
-        $res = $obj->fetchAll();
+        // Vyber data
+        $sql = "SELECT uzivatel.*, opravneni.nazev FROM uzivatel 
+              INNER JOIN opravneni ON uzivatel.uzivatel_id_opravneni = opravneni.id_opravneni
+              WHERE jmeno = :jmeno";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(
+            "jmeno" => $lJmeno,
+        ));
+        $res = $query->fetch();
 
-        // Špatně zadané údaje
-        if(count($res) < 1){
+        // Přihlašovací jméno neexistuje
+        if($res == null){
+            return 1;
+        }
+
+        // Hesla nejsou stejná
+        if(!password_verify($lHeslo, $res['heslo'])){
             return 1;
         }
 
         // Přihlaš uživatele
-        mySession::set("id", $res[0]["id_uzivatel"]);
-        mySession::set("jmeno", $res[0]["jmeno"]);
-        mySession::set("opravneni", $res[0]["uzivatel_id_opravneni"]);
+        mySession::set("id", $res["id_uzivatel"]);
+        mySession::set("jmeno", $res["jmeno"]);
+        mySession::set("uroven", $res["uzivatel_id_opravneni"]);
+        mySession::set("opravneni", $res["nazev"]);
         return 0;
     }
 

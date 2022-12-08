@@ -16,9 +16,14 @@ class View{
         require(DIR_VIEWS."footer.php");
     }
 
-    public function setData($data){
-        $this->dataFetch = $data;
+    public function setData($key, $data){
+        $this->dataFetch[$key] = $data;
     }
+
+    public function getData($key):array{
+        return $this->dataFetch[$key];
+    }
+
 
     public function setResult($res){
         $this->queryResult = $res;

@@ -9,6 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://localhost/stranky/WEB_Semestralka/util/css/betterBootstrap.css" rel="stylesheet">
 
     <!-- Bootstrap JavaScript -->
@@ -41,6 +42,28 @@
                             <p class="dropdown-header"><?= $_SESSION['jmeno'] ?></p>
                             <div class="dropdown-divider"></div>
                         </li>
+
+                            <?php
+                            if(mySession::get('uroven') >= 3){ ?>
+                                <li class="container">
+                                    <a class="dropdown-item" href="index.php?page=admin-uzivatele">Administrace uživatelů</a>
+                                    <a class="dropdown-item" href="index.php?page=admin-clanky">Administrace článků</a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                            <?php }
+                            if(mySession::get('uroven') == 2){ ?>
+                                <li class="container">
+                                    <a class="dropdown-item" href="index.php?page=prihlaseni">Správa recenzí</a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                            <?php }
+                            if(mySession::get('uroven') == 1){ ?>
+                                <li class="container">
+                                    <a class="dropdown-item" href="index.php?page=prihlaseni">Správa článků</a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                            <?php } ?>
+
                         <li class="container">
                             <form action="index.php?page=odhlaseni" method="post" class="d-flex text-center">
                                 <button type="submit" name="oSubmit" class="btn btn-danger m-1 w-110px btn-block flex-fill">Odhlásit</button>

@@ -6,10 +6,6 @@ const DB_NAME = "web_semestralka";
 const DB_USER = "root";
 const DB_PASS = "";
 
-// Nazev tabulek
-const TAB_UZIVATEL = "uzivatel";
-const TAB_OPRAVNENI = "opravneni";
-
 // Adresare projektu
 const DIR_UTILITY = "util/";
 const DIR_MODELS = "models/";
@@ -40,6 +36,10 @@ const WEB_PAGES = array(
     "profil" => array(
         "view" => "profil",
         "controller" => "ProfilController",
+    ),
+    "admin-uzivatele" => array(
+        "view" => "admin-uzivatele",
+        "controller" => "AdminController",
     ),
 );
 
