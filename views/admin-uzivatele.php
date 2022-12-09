@@ -3,47 +3,7 @@
 global $dataFetch;
 global $queryResult;
 
-echo $queryResult;
-
-/*
-if(mySession::isSet('uroven') && mySession::get('uroven') >= 2){?>
-    <div class="container">
-        <div class="card table-responsive">
-            <div class="card-body">
-                <h5 class="card-title mb-0">Spravovat uživatele</h5>
-            </div>
-            <table class="table table-striped table-sm mb-0 ">
-                <thead>
-                    <tr>
-                        <th class="border-0 col-auto">#</th>
-                        <th class="border-0 col-auto">Jméno</th>
-                        <th class="border-0 col-auto">E-mail</th>
-                        <th class="border-0 col-auto">Oprávnění</th>
-                        <th class="border-0 col-auto">Editovat</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                <?php
-                foreach ($dataFetch['uzivatel'] as $res){ ?>
-                    <tr class="align-middle">
-                        <td><?= $res['id_uzivatel'] ?></td>
-                        <td><?= $res['jmeno'] ?></td>
-                        <td><?= $res['email'] ?></td>
-                        <td><?= $res['nazev'] ?></td>
-                        <td><button type="button" class="btn btn-outline-success ml-2"><i class="fa fa-edit"></i></button></td>
-                    </tr>
-                <?php } ?>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-<?php } ?>
-*/
-
-if(mySession::isSet('uroven') && mySession::get('uroven') >= 2){?>
+if(mySession::isSet('uroven') && mySession::get('uroven') >= 3){?>
     <div class="container">
         <div class="card table-responsive">
             <div class="card-body">
@@ -92,7 +52,7 @@ if(mySession::isSet('uroven') && mySession::get('uroven') >= 2){?>
                             <button name="update" type="submit" class="btn btn-outline-success ml-2"><i class="fa fa-check"></i></button>
                         </td>
                         <td>
-                            <button name="delete" type="submit" onclick="prompt('Pro smazání napište jméno uživatele')" class="btn btn-outline-danger ml-2"><i class="fa fa-trash"></i></button>
+                            <button name="delete" onclick="return confirm('Opravdu chcete smazat uživatele <?= $res['jmeno'] ?>?')" type="submit" onclick="prompt('Pro smazání napište jméno uživatele')" class="btn btn-outline-danger ml-2"><i class="fa fa-trash"></i></button>
                         </td>
                         </form>
                         <?php } ?>

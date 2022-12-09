@@ -18,8 +18,9 @@ class AdminController {
         // Obsluha odhlášení
         if(mySession::isSet("uroven") && mySession::get("uroven") >= 3){
             if(isset($_POST["update"])){
-                $this->updateAuth();
+                $this->view->setResult($this->updateAuth());
             } else if(isset($_POST["delete"])){
+                $this->view->setResult($this->deleteUser());
             }
         }
 
@@ -43,6 +44,10 @@ class AdminController {
 
     public function updateAuth():int{
         return $this->model->updateAuth();
+    }
+
+    public function deleteUser():int{
+        return $this->model->deleteUser();
     }
 }
 

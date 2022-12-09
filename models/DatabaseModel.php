@@ -12,17 +12,6 @@ class DatabaseModel{
             die();
         }
     }
-
-    public function executeQuery($query){
-        $res = $this->pdo->query($query);
-
-        if ($res) {
-            return $res;
-        }
-        $err = $this->pdo->errorInfo();
-        echo "Error: ".$err[2];
-        return null;
-    }
 }
 
 ?>
