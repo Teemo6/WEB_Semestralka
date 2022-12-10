@@ -15,24 +15,16 @@ class AutorController extends Controller {
     public function showPage($pageView):string{
         // Obsluha nového článku
         if(isset($_POST["cSubmit"])){
-            $this->view->setResult($this->newArticle());
+            $this->view->setResult($this->model->newArticle());
         }
 
         // Výběr dat
-        $this->view->setData('clanky', $this->getMyArticles());
+        $this->view->setData('clanky', $this->model->getMyArticles());
 
         // Výpis view
         ob_start();
         $this->view->getView($pageView);
         return ob_get_clean();
-    }
-
-    public function getMyArticles():array{
-        return $this->model->getMyArticles();
-    }
-
-    public function newArticle():int{
-        return $this->model->newArticle();
     }
 }
 

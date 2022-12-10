@@ -19,7 +19,7 @@ global $dataFetch;
                             <p class="lead"><i class="fa fa-user"></i> <?= $res['jmeno'] ?></p>
                         </div>
                         <div class="col-sm-4">
-                            <button type="button" onClick=togglePDF('<?= $res['id_clanek'] ?>') class="btn btn-outline-success m-1 pull-right">Zobrazit</button>
+                            <button type="button" onClick=togglePDF('<?= $res['id_clanek'] ?>') class="btn btn-outline-secondary m-1 pull-right">Zobrazit</button>
                         </div>
                     </div>
                     <div>
@@ -28,6 +28,9 @@ global $dataFetch;
                     </div>
                 </div>
             <?php
+            }
+            if(count($dataFetch['clanky']) == 0){
+                echo "<h3>Žádné články k zobrazení.</h3>";
             }
         } ?>
 

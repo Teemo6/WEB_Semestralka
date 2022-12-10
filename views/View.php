@@ -41,6 +41,14 @@ class View{
     }
 
     /**
+     * Nastaví atribut result
+     */
+    public function setResultKey($key, $res){
+        $this->queryResult[$key] = $res;
+    }
+
+
+    /**
      * Vrátí atribut result
      */
     public function getResult():int{

@@ -116,6 +116,19 @@ global $queryResult;
         </div>
         <div id="pridat" class="collapse show">
             <div class="card-body">
+
+                <?php
+                if (isset($queryResult)) {
+                    if ($queryResult == 1) { ?>
+                        <div class="alert alert-danger text-center" role="alert">
+                            <div class="container">
+                                <b>Akce nebyla úspěšná.</b>
+                                <p>Recenzent je již přiřazen.</p>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } ?>
                 <form method="post">
                     <select class='form-control mb-2' name='id_recenzent'>
                         <?php

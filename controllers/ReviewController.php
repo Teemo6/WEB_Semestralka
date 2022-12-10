@@ -18,67 +18,35 @@ class ReviewController extends Controller {
         }
 
         if(isset($_POST["recSubmit"])){
-            $this->view->setResult($this->setReviewer());
+            $this->view->setResult($this->model->setReviewer());
         }
 
         if(isset($_POST["recDelete"])){
-            $this->view->setResult($this->deleteReview());
+            $this->view->setResult($this->model->deleteReview());
         }
 
         if(isset($_POST["artConfirm"])){
-            $this->view->setResult($this->confirmArticle());
+            $this->view->setResultKey('rozhodnuti' ,$this->model->confirmArticle());
         }
 
         if(isset($_POST["artRevoke"])){
-            $this->view->setResult($this->revokeArticle());
+            $this->view->setResult($this->model->revokeArticle());
         }
 
         if(isset($_POST["artDelete"])){
-            $this->view->setResult($this->deleteArticle());
+            $this->view->setResult($this->model->deleteArticle());
             header("location: index.php?page=admin-clanky");
         }
 
         // Výběr dat
-        $this->view->setData('clanek', $this->getArticle());
-        $this->view->setData('recenzenti_vsichni', $this->getReviewers());
-        $this->view->setData('recenze', $this->getReviews());
+        $this->view->setData('clanek', $this->model->getArticle());
+        $this->view->setData('recenzenti_vsichni', $this->model->getReviewers());
+        $this->view->setData('recenze', $this->model->getReviews());
 
         // Výpis view
         ob_start();
         $this->view->getView($pageView);
         return ob_get_clean();
-    }
-
-    public function getArticle():array{
-        return $this->model->getArticle();
-    }
-
-    public function getReviewers():array{
-        return $this->model->getReviewers();
-    }
-
-    public function getReviews():array{
-        return $this->model->getReviews();
-    }
-
-    public function setReviewer():int{
-        return $this->model->setReviewer();
-    }
-
-    public function deleteReview():int{
-        return $this->model->deleteReview();
-    }
-
-    public function deleteArticle():int{
-        return $this->model->deleteArticle();
-    }
-
-    public function confirmArticle():int{
-        return $this->model->confirmArticle();
-    }
-
-    public function revokeArticle():int{
-        return $this->model->revokeArticle();
     }
 }
 

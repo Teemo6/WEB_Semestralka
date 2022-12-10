@@ -10,7 +10,7 @@ class LoginModel extends DatabaseModel{
      *   2 Existuje uživatel se stejným e-mailem
      *   3 Hesla se neschodují
      */
-    public function registrace(){
+    public function register(){
         // Zadané parametry
         $rJmeno = htmlspecialchars($_POST["rJmeno"]);
         $rEmail = htmlspecialchars($_POST["rEmail"]);
@@ -58,7 +58,7 @@ class LoginModel extends DatabaseModel{
      *   0 Uživatel se přihlásil
      *   1 Údaje byly špatně zadány
      */
-    public function prihlaseni(){
+    public function login(){
         // Zadané parametry
         $lJmeno = htmlspecialchars($_POST["lJmeno"]);
         $lHeslo = htmlspecialchars($_POST["lHeslo"]);
@@ -94,7 +94,7 @@ class LoginModel extends DatabaseModel{
     /**
      * Odhlásí uživatele
      */
-    public function odhlaseni(){
+    public function logout(){
         mySession::destroy();
     }
 }

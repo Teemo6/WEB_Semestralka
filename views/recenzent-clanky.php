@@ -10,98 +10,88 @@ global $dataFetch;
 
     <div class="card mt-2">
         <div class="card-header">
+            <button class="btn form-control text-start" data-bs-toggle="collapse" data-bs-target="#clanek"><h4>Články</h4></button>
+        </div>
+        <div id="clanek" class="collapse show">
+            <div class="card-body">
+                <?php
+                foreach ($dataFetch['clanky'] as $res){
+                    if($res['hotova'] != 1){ ?>
+                    <div class="container border border-secondary rounded p-3 mt-2">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h4><?= $res['nazev'] ?></h4>
+                                <p class="lead"><i class="fa fa-user"></i> <?= $res['jmeno'] ?></p>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" onClick=togglePDF('<?= $res['id_clanek'] ?>') class="btn btn-outline-secondary m-1 pull-right">Zobrazit</button>
+                            </div>
+                        </div>
+                        <div>
+                            <p><?= $res['abstrakt'] ?></p>
+                            <iframe src="<?= DIR_UTILITY ?>/pdf/<?= $res['soubor'] ?>.pdf" id="PDF_<?= $res['id_clanek'] ?>" width="100%" height="400px" style="display:none"></iframe>
+                        </div>
+                    </div>
+                <?php }
+                } ?>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-header">
             <button class="btn form-control text-start" data-bs-toggle="collapse" data-bs-target="#novyClanek"><h4>Napsat recenzi</h4></button>
         </div>
         <div id="novyClanek" class="collapse show">
             <div class="card-body">
-
-                <?php
-                if (isset($queryResult)) {
-                if ($queryResult == 0) { ?>
-                <div class="alert alert-success text-center" role="alert">
-                    <div class="container mb-2">
-                        <b>Přidání článku bylo úspěšné.</b>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                        <span id="rateMe4"  class="feedback"></span>
                     </div>
-                    <?php } else if ($queryResult == 1) { ?>
-                    <div class="alert alert-danger text-center" role="alert">
-                        <div class="container mb-2">
-                            <b>Přidání článku nebylo úspěšné.</b>
-                            <p>Článek s tímto názvem existuje.</p>
-                        </div>
-                        <?php } else if ($queryResult == 2) { ?>
-                        <div class="alert alert-danger text-center" role="alert">
-                            <div class="container mb-2">
-                                <b>Přidání článku nebylo úspěšné.</b>
-                                <p>Nahraný soubor není typu PDF.</p>
-                            </div>
-                            <?php } else if ($queryResult == 3) { ?>
-                            <div class="alert alert-danger text-center" role="alert">
-                                <div class="container mb-2">
-                                    <b>Přidání článku nebylo úspěšné.</b>
-                                    <p>Chyba nahrání souboru.</p>
-                                </div>
-                                <?php }
-                                } ?>
-
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" name="cNazev" placeholder="Název článku" class="form-control" id="labelNazev" required>
-                                        <label for="labelNazev" class="smaller-label">Název článku</label>
-                                    </div>
-                                    <textarea name="cAbstrakt" placeholder="Abstrakt" class="form-control" rows="3" required></textarea>
-                                    <div class="mt-3 mb-3">
-                                        <input type="file" name="cSoubor" accept="application/pdf" id="cSoubor" class="form-control" required>
-                                    </div>
-                                    <button name="cSubmit" class="btn btn-success form-control" type="submit">Přidat článek</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
+                    <p>Článek:</p>
+                    <select name="id_clanek" class="form-control mb-2">
+                        <option hidden value="0"></option>
                     <?php
-                    if(isset($queryResult)){
-                        echo "</div>";
+                    foreach($dataFetch['clanky'] as $art){
+                        if($art['hotova'] != 1){ ?>
+                        <option value="<?= $art['recenze_id_clanek'] ?>"><?= $art['nazev'] ?></option>
+                    <?php }
                     } ?>
 
-                    <div class="card mt-2">
-                        <div class="card-header">
-                            <button class="btn form-control text-start" data-bs-toggle="collapse" data-bs-target="#mojeClanky"><h4>Moje recenze</h4></button>
-                        </div>
-                        <div id="mojeClanky" class="collapse show">
-                            <div class="card-body">
+                    </select>
+                    <p>Kvalita:</p>
+                    <select name="kvalita" class="form-control mb-2 text-warning" style="font-family: fontAwesome">
+                        <option hidden value="0"></option>
+                        <option value="1">&#xf005;</option>
+                        <option value="2">&#xf005;&#xf005;</option>
+                        <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                        <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                        <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                    </select>
+                    <p>Jazyk:</p>
+                    <select name="jazyk" class="form-control mb-2 text-warning" style="font-family: fontAwesome">
+                        <option hidden value="0"></option>
+                        <option value="1">&#xf005;</option>
+                        <option value="2">&#xf005;&#xf005;</option>
+                        <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                        <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                        <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                    </select>
+                    <p>Originalita:</p>
+                    <select name="originalita" class="form-control mb-2 text-warning" style="font-family: fontAwesome">
+                        <option hidden value="0"></option>
+                        <option value="1">&#xf005;</option>
+                        <option value="2">&#xf005;&#xf005;</option>
+                        <option value="3">&#xf005;&#xf005;&#xf005;</option>
+                        <option value="4">&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                        <option value="5">&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;</option>
+                    </select>
+                    <button name="rate" class="btn btn-success form-control mb-2" type="submit">Přidat recenzi</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                                <?php
-                                foreach ($dataFetch['clanky'] as $res){
-                                    $text = "Neschválen";
-                                    $border = "border-danger slightly-red-background";
-                                    $button = "btn-outline-danger";
-                                    $color = "text-danger";
-                                    if($res['schvalen'] == 1) {
-                                        $text = "Schválen";
-                                        $border = "border-success slightly-green-background";
-                                        $button = "btn-outline-success";
-                                        $color = "text-success";
-                                    } ?>
+</div>
 
-                                    <div class="container border <?= $border ?> rounded p-3 mt-2">
-                                        <div class="row">
-                                            <div class="col-sm-8">
-                                                <b class="<?= $color ?>"><?= $text ?></b>
-                                                <h4><?= $res['nazev'] ?></h4>
-                                                <p class="lead"><i class="fa fa-user"></i> <?= $res['jmeno'] ?></p>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <button type="button" onClick=togglePDF('<?= $res['id_clanek'] ?>') class="btn <?= $button ?> m-1 pull-right">Zobrazit</button>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <p><?= $res['abstrakt'] ?></p>
-                                            <iframe src="<?= DIR_UTILITY ?>/pdf/<?= $res['soubor'] ?>.pdf" id="PDF_<?= $res['id_clanek'] ?>" width="100%" height="400px" style="display:none"></iframe>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>

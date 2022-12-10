@@ -13,6 +13,12 @@ class RecenzentController extends Controller {
      * @return string webová stránka
      */
     public function showPage($pageView):string{
+        if (isset($_POST['rate'])) {
+            $this->view->setResult($this->model->rateArticle());
+        }
+
+        $this->view->setData('clanky', $this->model->getArticles());
+        $this->view->setData('recenze', $this->model->getArticles());
 
         // Výpis view
         ob_start();

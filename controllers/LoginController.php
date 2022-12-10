@@ -16,19 +16,19 @@ class LoginController extends Controller {
         // Obsluha odhlášení
         if(mySession::isSet("id")){
             if(isset($_POST["oSubmit"])){
-                $this->logout();
+                $this->model->logout();
             }
             header("location: index.php?page=clanky");
         }
 
         // Obsluha registrace
         if(isset($_POST["rSubmit"])){
-            $this->view->setResult($this->register());
+            $this->view->setResult($this->model->register());
         }
 
         // Obsluha přihlášení
         if(isset($_POST["lSubmit"])){
-            $this->view->setResult($this->login());
+            $this->view->setResult($this->model->login());
             if($this->view->getResult() == 0){
                 header("location: index.php?page=clanky");
             }
@@ -38,30 +38,6 @@ class LoginController extends Controller {
         ob_start();
         $this->view->getView($pageView);
         return ob_get_clean();
-    }
-
-    /**
-     * Vyhodnotí registraci
-     * @return int hláška stavu registrace
-     */
-    function register():int{
-        return $this->model->registrace();
-    }
-
-    /**
-     * Vyhodnotí přihlášení
-     * @return int hláška stavu přihlášení
-     */
-    function login():int{
-        return $this->model->prihlaseni();
-    }
-
-    /**
-     * Vyhodnotí odhlášení
-     * @return int hláška stavu odhlášení
-     */
-    function logout(){
-        $this->model->odhlaseni();
     }
 }
 

@@ -12,14 +12,7 @@ if(mySession::isSet('uroven') && mySession::get('uroven') >= 3){?>
 
     <?php
     if (isset($queryResult)) {
-        if ($queryResult == 0) { ?>
-            <div class="alert alert-success text-center" role="alert">
-                <div class="container">
-                    <b>Akce byla úspěšná.</b>
-                </div>
-            </div>
-    <?php
-        } else if ($queryResult == 1) { ?>
+         if ($queryResult == 1) { ?>
             <div class="alert alert-danger text-center" role="alert">
                 <div class="container">
                     <b>Akce nebyla úspěšná.</b>

@@ -14,16 +14,12 @@ class HlavniController extends Controller {
      */
     public function showPage($pageView):string{
         // Výběr dat
-        $this->view->setData('clanky', $this->getAllArticles());
+        $this->view->setData('clanky', $this->model->getAllArticles());
 
         // Výpis view
         ob_start();
         $this->view->getView($pageView);
         return ob_get_clean();
-    }
-
-    public function getAllArticles():array{
-        return $this->model->getAllArticles();
     }
 }
 

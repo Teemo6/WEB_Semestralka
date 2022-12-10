@@ -137,6 +137,15 @@ class ReviewModel extends DatabaseModel{
     public function deleteArticle():int{
         $clanekID = htmlspecialchars($_GET['id']);
 
+        // Smazání souboru na disku
+        $sql = "SELECT * FROM clanek WHERE id_clanek = :id_clanek";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array(
+            'id_clanek' => $clanekID,
+        ));
+        $res = $query->fetch();
+        unlink(DIR_UTILITY."pdf/".$res['soubor'].".pdf");
+
         // Proveď delete
         $sql = "DELETE FROM clanek WHERE id_clanek = :id_clanek";
         $query = $this->pdo->prepare($sql);
