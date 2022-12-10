@@ -9,6 +9,27 @@ if(mySession::isSet('uroven') && mySession::get('uroven') >= 3){?>
             <div class="card-body">
                 <h5 class="card-title mb-0">Spravovat uživatele</h5>
             </div>
+
+    <?php
+    if (isset($queryResult)) {
+        if ($queryResult == 0) { ?>
+            <div class="alert alert-success text-center" role="alert">
+                <div class="container">
+                    <b>Akce byla úspěšná.</b>
+                </div>
+            </div>
+    <?php
+        } else if ($queryResult == 1) { ?>
+            <div class="alert alert-danger text-center" role="alert">
+                <div class="container">
+                    <b>Akce nebyla úspěšná.</b>
+                    <p>Nedostatečné oprávnění.</p>
+                </div>
+            </div>
+    <?php
+        }
+    } ?>
+
             <table class="table table-striped table-sm mb-0">
                 <thead>
                 <tr>

@@ -5,7 +5,7 @@ global $queryResult;
 ?>
 
 <div class="container text-center p-4 w-500px">
-    <div class="border border-secondary border-top rounded-top shadow slightly-different-background p-4">
+    <div class="border border-secondary border-top rounded-top shadow slightly-green-background p-4">
         <h3 class="">Přihlášení</h3>
 
         <?php
@@ -35,10 +35,10 @@ global $queryResult;
 
     <?php
     if(isset($queryResult) && $queryResult == 1){
-        ?></div><?php
+        echo "</div>";
     } ?>
 
-    <div class="border border-secondary border-bottom rounded-bottom shadow slightly-different-background mt-3">
+    <div class="border border-secondary border-bottom rounded-bottom shadow slightly-green-background mt-3">
         <div class="mt-2 mb-2">
             <span>Jste tu nový?</span>
             <a href="index.php?page=registrace" class="link-success no-underline-link">Registrujte se</a>

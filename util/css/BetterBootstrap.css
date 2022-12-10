@@ -1,5 +1,9 @@
-.slightly-different-background{
+.slightly-green-background{
     background: #f7fff9;
+}
+
+.slightly-red-background{
+    background: #fff7f7;
 }
 
 .smaller-label {

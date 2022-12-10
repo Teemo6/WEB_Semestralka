@@ -30,7 +30,6 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="index.php?page=clanky" class="nav-link link-success no-underline-link"><h5>Články</h5></a></li>
-            <li><a href="index.php?page=profil" class="nav-link link-success no-underline-link"><h5>Profil</h5></a></li>
             <li><a href="#" class="nav-link link-success no-underline-link"><h5>O projektu</h5></a></li>
         </ul>
 
@@ -62,7 +61,7 @@
                             <?php }
                             if(mySession::get('uroven') >= 1){ ?>
                                 <li class="container">
-                                    <a class="dropdown-item" href="index.php?page=clanky-sprava">Správa článků</a>
+                                    <a class="dropdown-item" href="index.php?page=autor-clanky">Správa článků</a>
                                     <div class="dropdown-divider"></div>
                                 </li>
                             <?php } ?>

@@ -11,18 +11,16 @@ class LoginController {
 
     /**
      * Ovládá logiku, zobrazuje stránku
-     * @param $pageView
-     * @return string
+     * @param $pageView defaultní stránka k zobrazení
+     * @return string webová stránka
      */
     public function showPage($pageView):string{
         // Obsluha odhlášení
         if(mySession::isSet("id")){
             if(isset($_POST["oSubmit"])){
-               $this->logout();
-            } else {
-                // Přihlášený uživatel se nemůže znovu registrovat
-                $pageView = "clanky-hlavni";
+                $this->logout();
             }
+            header("location: index.php?page=clanky");
         }
 
         // Obsluha registrace
@@ -34,7 +32,7 @@ class LoginController {
         if(isset($_POST["lSubmit"])){
             $this->view->setResult($this->login());
             if($this->view->getResult() == 0){
-                $pageView = "clanky-hlavni";
+                header("location: index.php?page=clanky");
             }
         }
 

@@ -3,6 +3,9 @@
 require_once(DIR_MODELS."DatabaseModel.php");
 
 class AdminModel extends DatabaseModel{
+    /*
+     * Vrátí všechny uživatele
+     */
     public function getAllUsers():array {
         $sql = "SELECT uzivatel.*, opravneni.* FROM uzivatel
                 INNER JOIN opravneni ON uzivatel.uzivatel_id_opravneni = opravneni.id_opravneni";
@@ -12,6 +15,9 @@ class AdminModel extends DatabaseModel{
         return $res;
     }
 
+    /**
+     * Vrátí všechny role
+     */
     public function getAllAuth():array {
         $sql = "SELECT * FROM opravneni";
         $query = $this->pdo->prepare($sql);
@@ -20,6 +26,11 @@ class AdminModel extends DatabaseModel{
         return $res;
     }
 
+    /**
+     * Zkusí upravit uživateli roli, vrací číslo výsledku
+     *   0 Role byla změněna
+     *   1 Na změnu role nemá přihlášený uživatel dostatečné oprávnění
+     */
     public function updateAuth():int {
         // Předané parametry
         $updUzivatel = htmlspecialchars($_POST['id_uzivatel']);
@@ -38,7 +49,7 @@ class AdminModel extends DatabaseModel{
         ));
         $res = $query->fetch();
         if($res['uzivatel_id_opravneni'] >= mySession::get('uroven')){
-            return 2;
+            return 1;
         }
 
         // Proveď update
@@ -51,6 +62,11 @@ class AdminModel extends DatabaseModel{
         return 0;
     }
 
+    /**
+     * Zkusí smazat uživatele (včetně všech jeho článků), vrací číslo výsledku
+     *   0 Uživatel byl odstraněn
+     *   1 Na odstranění uživatele nemá přihlášený uživatel dostatečné oprávnění
+     */
     public function deleteUser():int {
         // Předané parametry
         $updUzivatel = htmlspecialchars($_POST['id_uzivatel']);
@@ -63,7 +79,7 @@ class AdminModel extends DatabaseModel{
         ));
         $res = $query->fetch();
         if($res['uzivatel_id_opravneni'] >= mySession::get('uroven')){
-            return 3;
+            return 1;
         }
 
         // Proveď delete

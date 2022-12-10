@@ -19,7 +19,7 @@ const DEFAULT_WEB_PAGE = "clanky";
 const WEB_PAGES = array(
     "clanky" => array(
         "view" => "clanky-hlavni",
-        "controller" => "EmptyController",
+        "controller" => "HlavniController",
     ),
     "registrace" => array(
         "view" => "login-registrace",
@@ -33,13 +33,17 @@ const WEB_PAGES = array(
         "view" => "clanky-hlavni",
         "controller" => "LoginController",
     ),
-    "profil" => array(
-        "view" => "profil",
-        "controller" => "ProfilController",
+    "autor-clanky" => array(
+        "view" => "autor-clanky",
+        "controller" => "AutorController",
     ),
     "admin-uzivatele" => array(
         "view" => "admin-uzivatele",
         "controller" => "AdminController",
+    ),
+    "admin-clanky" => array(
+        "view" => "admin-clanky",
+        "controller" => "ArticleController",
     ),
 );
 

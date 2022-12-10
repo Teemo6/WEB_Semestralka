@@ -81,7 +81,6 @@ class LoginModel extends DatabaseModel{
 
     public function odhlaseni(){
         mySession::destroy();
-        header("location: index.php?page=odhlaseni");
     }
 }
 
