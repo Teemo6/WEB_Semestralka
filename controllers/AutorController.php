@@ -1,12 +1,10 @@
 <?php
 
-class AutorController {
-    public function __construct(){
-        require_once(DIR_MODELS."AutorModel.php");
-        $this->model = new AutorModel();
+require_once(DIR_CONTROLLERS."Controller.php");
 
-        require_once(DIR_VIEWS."View.php");
-        $this->view = new View();
+class AutorController extends Controller {
+    public function __construct(){
+        parent::__construct("AutorModel");
     }
 
     /**

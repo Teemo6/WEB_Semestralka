@@ -8,9 +8,6 @@ global $dataFetch;
 
 <div class="container">
     <div class="container">
-        <h3 class="mt-3">Webová konference na téma programování</h3>
-    </div>
-    <div class="container">
 
         <?php
         if(isset($dataFetch['clanky'])){

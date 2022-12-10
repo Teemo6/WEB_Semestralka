@@ -21,6 +21,10 @@ const WEB_PAGES = array(
         "view" => "clanky-hlavni",
         "controller" => "HlavniController",
     ),
+    "about" => array(
+        "view" => "about",
+        "controller" => "AboutController",
+    ),
     "registrace" => array(
         "view" => "login-registrace",
         "controller" => "LoginController",
@@ -44,6 +48,10 @@ const WEB_PAGES = array(
     "admin-clanky" => array(
         "view" => "admin-clanky",
         "controller" => "ArticleController",
+    ),
+    "admin-recenze" => array(
+        "view" => "admin-recenze",
+        "controller" => "ReviewController",
     ),
 );
 

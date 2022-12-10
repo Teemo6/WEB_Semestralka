@@ -1,12 +1,10 @@
 <?php
 
-class ArticleController {
-    public function __construct(){
-        require_once(DIR_MODELS."ArticleModel.php");
-        $this->model = new ArticleModel();
+require_once(DIR_CONTROLLERS."Controller.php");
 
-        require_once(DIR_VIEWS."View.php");
-        $this->view = new View();
+class ArticleController extends Controller {
+    public function __construct(){
+        parent::__construct("ArticleModel");
     }
 
     /**
@@ -17,7 +15,6 @@ class ArticleController {
     public function showPage($pageView):string{
         // Výběr dat
         $this->view->setData('clanky', $this->getAllArticles());
-        $this->view->setData('recenzenti', $this->getAllArticles());
 
         // Výpis view
         ob_start();
@@ -27,10 +24,6 @@ class ArticleController {
 
     public function getAllArticles():array{
         return $this->model->getAllArticles();
-    }
-
-    public function getAllReviewers():array{
-        return $this->model->getAllReviewers();
     }
 }
 

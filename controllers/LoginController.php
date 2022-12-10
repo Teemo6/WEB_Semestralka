@@ -1,12 +1,10 @@
 <?php
 
-class LoginController {
-    public function __construct(){
-        require_once(DIR_MODELS."LoginModel.php");
-        $this->model = new LoginModel();
+require_once(DIR_CONTROLLERS."Controller.php");
 
-        require_once(DIR_VIEWS."View.php");
-        $this->view = new View();
+class LoginController extends Controller {
+    public function __construct(){
+        parent::__construct("LoginModel");
     }
 
     /**

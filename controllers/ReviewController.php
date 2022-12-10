@@ -2,9 +2,9 @@
 
 require_once(DIR_CONTROLLERS."Controller.php");
 
-class HlavniController extends Controller {
+class ReviewController extends Controller {
     public function __construct(){
-        parent::__construct("HlavniModel");
+        parent::__construct("ReviewModel");
     }
 
     /**

@@ -1,12 +1,10 @@
 <?php
 
-class AdminController {
-    public function __construct(){
-        require_once(DIR_MODELS."AdminModel.php");
-        $this->model = new AdminModel();
+require_once(DIR_CONTROLLERS."Controller.php");
 
-        require_once(DIR_VIEWS."View.php");
-        $this->view = new View();
+class AdminController extends Controller{
+    public function __construct(){
+        parent::__construct("AdminModel");
     }
 
     /**

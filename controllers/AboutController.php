@@ -2,9 +2,9 @@
 
 require_once(DIR_CONTROLLERS."Controller.php");
 
-class HlavniController extends Controller {
+class AboutController extends Controller {
     public function __construct(){
-        parent::__construct("HlavniModel");
+        parent::__construct("DatabaseModel");
     }
 
     /**
@@ -13,17 +13,10 @@ class HlavniController extends Controller {
      * @return string webová stránka
      */
     public function showPage($pageView):string{
-        // Výběr dat
-        $this->view->setData('clanky', $this->getAllArticles());
-
         // Výpis view
         ob_start();
         $this->view->getView($pageView);
         return ob_get_clean();
-    }
-
-    public function getAllArticles():array{
-        return $this->model->getAllArticles();
     }
 }
 
