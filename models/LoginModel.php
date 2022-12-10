@@ -3,6 +3,13 @@
 require_once(DIR_MODELS."DatabaseModel.php");
 
 class LoginModel extends DatabaseModel{
+    /**
+     * Zkusí registrovat uživatele, vrací číslo výsledku
+     *   0 Uživatel se vytvořil
+     *   1 Existuje uživatel se stejným jménem
+     *   2 Existuje uživatel se stejným e-mailem
+     *   3 Hesla se neschodují
+     */
     public function registrace(){
         // Zadané parametry
         $rJmeno = htmlspecialchars($_POST["rJmeno"]);
@@ -46,6 +53,11 @@ class LoginModel extends DatabaseModel{
         return 0;
     }
 
+    /**
+     * Zkusí přihlásit uživatele, vrací číslo výsledku
+     *   0 Uživatel se přihlásil
+     *   1 Údaje byly špatně zadány
+     */
     public function prihlaseni(){
         // Zadané parametry
         $lJmeno = htmlspecialchars($_POST["lJmeno"]);
@@ -79,6 +91,9 @@ class LoginModel extends DatabaseModel{
         return 0;
     }
 
+    /**
+     * Odhlásí uživatele
+     */
     public function odhlaseni(){
         mySession::destroy();
     }

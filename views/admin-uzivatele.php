@@ -73,7 +73,7 @@ if(mySession::isSet('uroven') && mySession::get('uroven') >= 3){?>
                             <button name="update" type="submit" class="btn btn-outline-success ml-2 w-40px"><i class="fa fa-check"></i></button>
                         </td>
                         <td>
-                            <button name="delete" onclick="return confirm('Opravdu chcete smazat uživatele <?= $res['jmeno'] ?>?')" type="submit" onclick="prompt('Pro smazání napište jméno uživatele')" class="btn btn-outline-danger ml-2 w-40px"><i class="fa fa-trash"></i></button>
+                            <button name="delete" onclick="return confirm('Opravdu chcete smazat uživatele <?= $res['jmeno'] ?>?')" type="submit" class="btn btn-outline-danger ml-2 w-40px"><i class="fa fa-trash"></i></button>
                         </td>
                         </form>
                         <?php } ?>

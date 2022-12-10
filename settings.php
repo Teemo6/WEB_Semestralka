@@ -21,34 +21,47 @@ const WEB_PAGES = array(
         "view" => "clanky-hlavni",
         "controller" => "HlavniController",
     ),
+
     "about" => array(
         "view" => "about",
         "controller" => "AboutController",
     ),
+
     "registrace" => array(
         "view" => "login-registrace",
         "controller" => "LoginController",
     ),
+
     "prihlaseni" => array(
         "view" => "login-prihlaseni",
         "controller" => "LoginController",
     ),
+
     "odhlaseni" => array(
         "view" => "clanky-hlavni",
         "controller" => "LoginController",
     ),
+
     "autor-clanky" => array(
         "view" => "autor-clanky",
         "controller" => "AutorController",
     ),
+
+    "recenzent-clanky" => array(
+        "view" => "recenzent-clanky",
+        "controller" => "RecenzentController",
+    ),
+
     "admin-uzivatele" => array(
         "view" => "admin-uzivatele",
         "controller" => "AdminController",
     ),
+
     "admin-clanky" => array(
         "view" => "admin-clanky",
         "controller" => "ArticleController",
     ),
+
     "admin-recenze" => array(
         "view" => "admin-recenze",
         "controller" => "ReviewController",

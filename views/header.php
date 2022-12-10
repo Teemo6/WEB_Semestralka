@@ -55,7 +55,7 @@
                             <?php }
                             if(mySession::get('uroven') >= 2){ ?>
                                 <li class="container">
-                                    <a class="dropdown-item" href="index.php?page=recenze-clanky">Správa recenzí</a>
+                                    <a class="dropdown-item" href="index.php?page=recenzent-clanky">Správa recenzí</a>
                                     <div class="dropdown-divider"></div>
                                 </li>
                             <?php }
