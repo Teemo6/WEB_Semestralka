@@ -13,8 +13,12 @@ class ReviewController extends Controller {
      * @return string webová stránka
      */
     public function showPage($pageView):string{
+        if(!isset($_GET["id"])){
+            header("location: index.php?page=admin-clanky");
+        }
+
         // Výběr dat
-        $this->view->setData('clanky', $this->getAllArticles());
+        $this->view->setData('clanek', $this->getArticle());
 
         // Výpis view
         ob_start();
@@ -22,8 +26,8 @@ class ReviewController extends Controller {
         return ob_get_clean();
     }
 
-    public function getAllArticles():array{
-        return $this->model->getAllArticles();
+    public function getArticle():array{
+        return $this->model->getArticle();
     }
 }
 

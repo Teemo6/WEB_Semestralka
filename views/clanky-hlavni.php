@@ -24,7 +24,7 @@ global $dataFetch;
                     </div>
                     <div>
                         <p><?= $res['abstrakt'] ?></p>
-                        <iframe src="<?= DIR_UTILITY ?>/pdf/<?= $res['soubor'] ?>" id="PDF_<?= $res['id_clanek'] ?>" width="100%" height="400px" style="display:none"></iframe>
+                        <iframe src="<?= DIR_UTILITY ?>/pdf/<?= $res['soubor'] ?>.pdf" id="PDF_<?= $res['id_clanek'] ?>" width="100%" height="400px" style="display:none"></iframe>
                     </div>
                 </div>
             <?php

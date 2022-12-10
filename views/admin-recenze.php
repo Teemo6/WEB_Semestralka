@@ -1,1 +1,1 @@
-<?php
+<button onclick="location.href='index.php?page=admin-clanky'" class="btn btn-outline-success ml-2">Zpět</button>

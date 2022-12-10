@@ -62,7 +62,7 @@ class AutorModel extends DatabaseModel{
             "id" => mySession::get('id'),
             "nazev" => $cNazev,
             "abstrakt" => $cAbstrakt,
-            "soubor" => $cSoubor,
+            "soubor" => $nazevSouboru,
         ));
         return 0;
     }

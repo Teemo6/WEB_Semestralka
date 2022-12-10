@@ -19,24 +19,24 @@ global $dataFetch;
                 if (isset($queryResult)) {
                 if ($queryResult == 0) { ?>
                     <div class="alert alert-success text-center" role="alert">
-                        <div class="container">
+                        <div class="container mb-2">
                             <b>Přidání článku bylo úspěšné.</b>
                         </div>
                 <?php } else if ($queryResult == 1) { ?>
                     <div class="alert alert-danger text-center" role="alert">
-                        <div class="container">
+                        <div class="container mb-2">
                             <b>Přidání článku nebylo úspěšné.</b>
                             <p>Článek s tímto názvem existuje.</p>
                         </div>
                 <?php } else if ($queryResult == 2) { ?>
                     <div class="alert alert-danger text-center" role="alert">
-                        <div class="container">
+                        <div class="container mb-2">
                             <b>Přidání článku nebylo úspěšné.</b>
                             <p>Nahraný soubor není typu PDF.</p>
                         </div>
                 <?php } else if ($queryResult == 3) { ?>
                      <div class="alert alert-danger text-center" role="alert">
-                         <div class="container">
+                         <div class="container mb-2">
                              <b>Přidání článku nebylo úspěšné.</b>
                              <p>Chyba nahrání souboru.</p>
                          </div>
@@ -50,7 +50,7 @@ global $dataFetch;
                     </div>
                     <textarea name="cAbstrakt" placeholder="Abstrakt" class="form-control" rows="3" required></textarea>
                     <div class="mt-3 mb-3">
-                        <input type="file" name="cSoubor" id="cSoubor" class="form-control" required>
+                        <input type="file" name="cSoubor" accept="application/pdf" id="cSoubor" class="form-control" required>
                     </div>
                     <button name="cSubmit" class="btn btn-success form-control" type="submit">Přidat článek</button>
                 </form>
@@ -96,7 +96,7 @@ global $dataFetch;
                         </div>
                         <div>
                             <p><?= $res['abstrakt'] ?></p>
-                            <iframe src="<?= DIR_UTILITY ?>/pdf/<?= $res['soubor'] ?>" id="PDF_<?= $res['id_clanek'] ?>" width="100%" height="400px" style="display:none"></iframe>
+                            <iframe src="<?= DIR_UTILITY ?>/pdf/<?= $res['soubor'] ?>.pdf" id="PDF_<?= $res['id_clanek'] ?>" width="100%" height="400px" style="display:none"></iframe>
                         </div>
                     </div>
                     <?php } ?>

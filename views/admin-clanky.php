@@ -9,35 +9,6 @@ if(mySession::isSet('uroven') && mySession::get('uroven') >= 3){?>
             <div class="card-body">
                 <h5 class="card-title mb-0">Spravovat články</h5>
             </div>
-
-            <?php
-            if (isset($queryResult)) {
-                if ($queryResult == 0) { ?>
-                    <div class="alert alert-success text-center" role="alert">
-                        <div class="container">
-                            <b>Akce byla úspěšná.</b>
-                        </div>
-                    </div>
-                    <?php
-                } else if ($queryResult == 1) { ?>
-                    <div class="alert alert-danger text-center" role="alert">
-                        <div class="container">
-                            <b>Akce nebyla úspěšná.</b>
-                            <p>Nedostatečné oprávnění.</p>
-                        </div>
-                    </div>
-                    <?php
-                } else if ($queryResult == 2) { ?>
-                    <div class="alert alert-danger text-center" role="alert">
-                        <div class="container">
-                            <b>Akce nebyla úspěšná.</b>
-                            <p>Před smazáním uživatele smažte jeho články.</p>
-                        </div>
-                    </div>
-                    <?php
-                }
-            } ?>
-
             <table class="table table-striped table-sm mb-0">
                 <thead>
                 <tr>
@@ -67,7 +38,7 @@ if(mySession::isSet('uroven') && mySession::get('uroven') >= 3){?>
 
                         </td>
                         <td>
-                            <button name="update" type="submit" class="btn btn-outline-success ml-2"><i class="fa fa-info"></i></button>
+                            <button onclick="location.href='index.php?page=admin-recenze&id=<?= $res['id_clanek'] ?>'" class="btn btn-outline-success ml-2 w-40px"><i class="fa fa-info"></i></button>
                         </td>
                         </form>
                         <?php } ?>

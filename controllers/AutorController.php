@@ -13,13 +13,13 @@ class AutorController extends Controller {
      * @return string webová stránka
      */
     public function showPage($pageView):string{
-        // Výběr dat
-        $this->view->setData('clanky', $this->getMyArticles());
-
-        // Obsluha registrace
+        // Obsluha nového článku
         if(isset($_POST["cSubmit"])){
             $this->view->setResult($this->newArticle());
         }
+
+        // Výběr dat
+        $this->view->setData('clanky', $this->getMyArticles());
 
         // Výpis view
         ob_start();

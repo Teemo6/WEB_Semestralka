@@ -13,10 +13,6 @@ class AdminController extends Controller{
      * @return string webová stránka
      */
     public function showPage($pageView):string{
-        // Výběr dat
-        $this->view->setData('uzivatel', $this->getAllUsers());
-        $this->view->setData('opravneni', $this->getAllAuth());
-
         // Obsluha ovládání
         if(mySession::isSet("uroven") && mySession::get("uroven") >= 3){
             if(isset($_POST["update"])){
@@ -25,6 +21,10 @@ class AdminController extends Controller{
                 $this->view->setResult($this->deleteUser());
             }
         }
+
+        // Výběr dat
+        $this->view->setData('uzivatel', $this->getAllUsers());
+        $this->view->setData('opravneni', $this->getAllAuth());
 
         // Výpis view
         ob_start();
